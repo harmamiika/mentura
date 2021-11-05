@@ -1,0 +1,12 @@
+{
+  "name": "mentura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "match": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
