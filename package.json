@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "match": "node index.js"
+    "match": "node index.js",
+    "dev": "nodemon index.js yoyoo *oyoo*"
   },
   "keywords": [],
   "author": "",

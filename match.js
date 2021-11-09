@@ -1,14 +1,31 @@
-// for (let i = 0; i < stringArray; i++) {
-//   swit;
-// }
-
 // find pattern - includes?
 // if not => insta exit
 
-// if found
-// look at the character before === put in a variable
-// and
+const match = (stringToMatch, matcher) => {
+  console.log(stringToMatch, 'string');
+  console.log(matcher, 'matcher');
+
+  const matcherStartIndex = stringToMatch.indexOf(matcher.matchString);
+  if (matcherStartIndex === -1) {
+    return false;
+  }
+
+  return;
+};
+
 // do another loop based on carachter === do a switch statement based on carachter
+const compareGlob = (stringToMatch, glob, index) => {
+  switch (glob) {
+    case '/':
+      return;
+    case '*':
+      return;
+    case '+':
+      return;
+    default:
+      return;
+  }
+};
 
 // if matcher.startGlob === ? => if slicedstring.lenght === 1 {return success}
 // ? -> if one letter -> good -> if more bad? {  }
@@ -22,3 +39,5 @@
 
 // do the same but opposite side + => -
 // you can reuse loop
+
+module.exports = { match };
