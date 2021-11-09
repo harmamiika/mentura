@@ -1,43 +1,66 @@
-// find pattern - includes?
-// if not => insta exit
-
 const match = (stringToMatch, matcher) => {
   console.log(stringToMatch, 'string');
   console.log(matcher, 'matcher');
 
-  const matcherStartIndex = stringToMatch.indexOf(matcher.matchString);
+  const matcherStartIndex = stringToMatch.indexOf(matcher.matcherString);
+  console.log(matcherStartIndex);
+
   if (matcherStartIndex === -1) {
     return false;
   }
 
-  return;
+  const firstGlobPasses = compareGlob(
+    matcher.firstGlob,
+    matcher.firstGlob ? matcherStartIndex - 1 : matcherStartIndex
+  );
+  const lastGlobPasses = compareGlob(
+    matcher.lastGlob,
+    matcher.lastGlob
+      ? matcherStartIndex + matcher.matcherString.length + 1
+      : matcherStartIndex + matcher.matcherString.length,
+    false,
+    stringToMatch
+  );
+
+  console.log(firstGlobPasses, 'pases');
+  console.log(lastGlobPasses, 'passes');
+
+  return firstGlobPasses && lastGlobPasses;
 };
 
-// do another loop based on carachter === do a switch statement based on carachter
-const compareGlob = (stringToMatch, glob, index) => {
-  switch (glob) {
-    case '/':
-      return;
-    case '*':
-      return;
-    case '+':
-      return;
-    default:
-      return;
+const compareGlob = (glob, index, isFirst = true, stringToMatch) => {
+  if (isFirst) {
+    switch (glob) {
+      case '?':
+        return index === 0;
+      case '+':
+        return index >= 0;
+      case '*':
+        return index >= -1;
+      case null:
+        return index === 0;
+      default:
+        return;
+    }
+  } else {
+    switch (glob) {
+      case '?':
+        return index === stringToMatch.length;
+      case '+':
+        return index <= stringToMatch.length;
+      case '*':
+        return index <= stringToMatch.length + 1;
+      case null:
+        let letter = stringToMatch[index];
+        let lastIndex = index;
+        while (stringToMatch[lastIndex] === letter) {
+          lastIndex++;
+        }
+        return lastIndex === stringToMatch.length;
+      default:
+        return;
+    }
   }
 };
 
-// if matcher.startGlob === ? => if slicedstring.lenght === 1 {return success}
-// ? -> if one letter -> good -> if more bad? {  }
-
-// + -> one charachter after is a match with the spesific one on string -> loop?
-// if slicedstring.lenghth >= 1 => returns success
-
-// * -> anything is good after => {return success}
-// \ -> ??? mitä tarkoittaa tämä - escapes? - cancel loop?
-// else continue to the next one until the end
-
-// do the same but opposite side + => -
-// you can reuse loop
-
-module.exports = { match };
+module.exports = match;

@@ -1,12 +1,12 @@
 const analyzeMatcher = (matcher) => {
   const firstGlob = getGlob(matcher);
-  console.log(firstGlob);
 
   const lastGlob = getGlob(matcher, false);
-  console.log(lastGlob);
 
-  const matcherString = matcher.slice(1, matcher.length - 2);
-  console.log(matcherString);
+  const matcherString = matcher.slice(
+    firstGlob ? 1 : 0,
+    lastGlob ? matcher.length - 1 : matcher.length
+  );
 
   return { matcherString, firstGlob, lastGlob };
 };
@@ -25,18 +25,4 @@ const getGlob = (matcher, isFirst = true) => {
   }
 };
 
-module.exports = { analyzeMatcher };
-
-// very confused about what escaping means in this context exactly - pretty sure it's not this but i don't really have anything better tbh
-// I'd appreciate it if you could take the time and give feedback about this!
-
-// const escapeBackslashes = (matcher) => {
-//   const backslashIndex = matcher.indexOf('\\');
-//   if (backslashIndex === -1) {
-//     return matcher;
-//   } else if (backslashIndex === matcher.length - 1) {
-//     return null;
-//   } else {
-//     return matcher; ?????????
-//   }
-// };
+module.exports = analyzeMatcher;
