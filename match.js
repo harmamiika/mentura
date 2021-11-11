@@ -1,9 +1,5 @@
 const match = (stringToMatch, matcher) => {
-  console.log(stringToMatch, 'string');
-  console.log(matcher, 'matcher');
-
   const matcherStartIndex = stringToMatch.indexOf(matcher.matcherString);
-  console.log(matcherStartIndex);
 
   if (matcherStartIndex === -1) {
     return false;
@@ -21,9 +17,6 @@ const match = (stringToMatch, matcher) => {
     false,
     stringToMatch
   );
-
-  console.log(firstGlobPasses, 'pases');
-  console.log(lastGlobPasses, 'passes');
 
   return firstGlobPasses && lastGlobPasses;
 };
@@ -51,12 +44,7 @@ const compareGlob = (glob, index, isFirst = true, stringToMatch) => {
       case '*':
         return index <= stringToMatch.length + 1;
       case null:
-        let letter = stringToMatch[index];
-        let lastIndex = index;
-        while (stringToMatch[lastIndex] === letter) {
-          lastIndex++;
-        }
-        return lastIndex === stringToMatch.length;
+        return index === stringToMatch.length;
       default:
         return;
     }

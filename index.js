@@ -6,9 +6,6 @@ const resultLogger = require('./resultLogger');
 const stringToMatch = process.argv[2];
 const matcher = process.argv[3];
 
-console.log(stringToMatch, 'string');
-console.log(matcher, 'matcher');
-
 const matcherObject = analyzeMatcher(matcher);
 
 const result = match(stringToMatch, matcherObject);
